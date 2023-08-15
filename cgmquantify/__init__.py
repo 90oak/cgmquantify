@@ -59,7 +59,7 @@ def importdexcom(filename):
   df = df.dropna(subset=['Glucose'])
 
   #need to change LOW to 40 to clean up the data in the glucose column
-  df['Glucose'] = df['Glucose'].replace('LOW', '40')
+  df['Glucose'] = df['Glucose'].replace('Low', '40')
 
   df['Glucose'] = pd.to_numeric(data['Glucose'])
   df.drop(df.index[:12], inplace=True) 
