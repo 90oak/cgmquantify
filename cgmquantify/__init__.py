@@ -53,6 +53,14 @@ def importdexcom(filename):
   df['Time'] = data['Timestamp (YYYY-MM-DDThh:mm:ss)']
   df['Glucose'] = pd.to_numeric(data['Glucose Value (mg/dL)'])
   df.drop(df.index[:12], inplace=True)
+
+  #drop empty rows. These are created for food logging events, etc.
+  df = df.dropna(subset=['Glucose'])
+
+  #need to change LOW to 40 to clean up the data in the glucose column
+  df['Glucose'] = df['Glucose'].replace('LOW', '40')
+  df['Glucose'] = pd.to_numeric(df['Glucose'])
+  
   df['Time'] =  pd.to_datetime(df['Time'], format='%Y-%m-%dT%H:%M:%S')
   df['Day'] = df['Time'].dt.date
   df = df.reset_index()
