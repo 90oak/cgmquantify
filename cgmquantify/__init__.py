@@ -49,11 +49,14 @@ def importdexcom(filename):
           (pd.DataFrame): dataframe of data with DateTime, Time and Glucose columns
   """
   data = pd.read_csv(filename) 
+
   df = pd.DataFrame()
   df['Time'] = data['Timestamp (YYYY-MM-DDThh:mm:ss)']
 
   #rename Glucose table
   df['Glucose'] = data['Glucose Value (mg/dL)']
+
+  df.drop(df.index[:12], inplace=True) 
 
   #drop empty rows. These are created for food logging events, etc.
   df = df.dropna(subset=['Glucose'])
@@ -62,10 +65,11 @@ def importdexcom(filename):
   df['Glucose'] = df['Glucose'].replace('Low', '40')
 
   df['Glucose'] = pd.to_numeric(df['Glucose'])
-  df.drop(df.index[:12], inplace=True) 
+
   df['Time'] =  pd.to_datetime(df['Time'], format='%Y-%m-%dT%H:%M:%S')
   df['Day'] = df['Time'].dt.date
   df = df.reset_index()
+
   return df
 
 
@@ -122,15 +126,20 @@ def intradaysd(df):
           (pd.DataFrame): dataframe of data with DateTime, Time and Glucose columns
       Returns:
           intradaysd_mean (float): intraday standard deviation averaged over all days
-          intradaysd_medan (float): intraday standard deviation median over all days
+          intradaysd_median (float): intraday standard deviation median over all days
           intradaysd_sd (float): intraday standard deviation standard deviation over all days
           
   """
   intradaysd =[]
 
   for i in pd.unique(df['Day']):
-      intradaysd.append(np.std(df[df['Day']==i]))
-  
+      #original line that throws error
+      #intradaysd.append(np.std(df[df['Day']==i]))
+      #gives same answer as other option below, but doesn't match original test output values
+      intradaysd.append(np.std(df[df['Day']==i]['Glucose']))
+      #line below yields same values as line above
+      #intradaysd.append(df.groupby('Day')['Glucose'].apply(np.std))
+
   intradaysd_mean = np.mean(intradaysd)
   intradaysd_median = np.median(intradaysd)
   intradaysd_sd = np.std(intradaysd)
@@ -214,7 +223,7 @@ def MGE(df, sd=1):
   """
   up = np.mean(df['Glucose']) + sd*np.std(df['Glucose'])
   dw = np.mean(df['Glucose']) - sd*np.std(df['Glucose'])
-  MGE = np.mean(df[(df['Glucose']>= up) | (df['Glucose']<= dw)])
+  MGE = np.mean(df[(df['Glucose']>= up) | (df['Glucose']<= dw)]['Glucose'])
   return MGE
 
 def MGN(df, sd=1):
@@ -229,7 +238,7 @@ def MGN(df, sd=1):
   """
   up = np.mean(df['Glucose']) + sd*np.std(df['Glucose'])
   dw = np.mean(df['Glucose']) - sd*np.std(df['Glucose'])
-  MGN = np.mean(df[(df['Glucose']<= up) & (df['Glucose']>= dw)])
+  MGN = np.mean(df[(df['Glucose']<= up) & (df['Glucose']>= dw)]['Glucose'])
   return MGN
 
 def MAGE(df, std=1):
@@ -587,12 +596,23 @@ def plotglucosesmooth(df, size=15):
           LOWESS-smoothed plot of glucose
           
   """
-  filteres = lowess(df['Glucose'], df['Time'], is_sorted=True, frac=0.025, it=0)
-  filtered = pd.to_datetime(filteres[:,0], format='%Y-%m-%dT%H:%M:%S') 
   
+  filteres = lowess(df['Glucose'], df['Time'], is_sorted=True, frac=0.025, it=0)
+  #filtered = pd.to_datetime(filteres[:,0], format='%Y-%m-%dT%H:%M:%S') 
+
+
   plt.figure(figsize=(20,5))
   plt.rcParams.update({'font.size': size})
   plt.plot(df['Time'], df['Glucose'], '.')
-  plt.plot(filtered, filteres[:,1], 'r')
+  #original line that throws error
+  #plt.plot(filtered, filteres[:,1], 'r')
+  
+  #seems like this should work since filteres[:,0] is the df['Time'] array that is already in datetime format
+  #throws an error, tho
+  #plt.plot(filteres[:,0], filteres[:,1], 'r')
+
+  #seems like this should be fine since df['Time'] doesn't get adjusted by lowess, only Glucose gets smoothed
+  plt.plot(df['Time'], filteres[:,1], 'r')
+  
   plt.ylabel('Glucose')
   plt.show()

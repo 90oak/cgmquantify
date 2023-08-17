@@ -1,0 +1,40 @@
+﻿Index,Timestamp (YYYY-MM-DDThh:mm:ss),Event Type,Event Subtype,Patient Info,Device Info,Source Device ID,Glucose Value (mg/dL),Insulin Value (u),Carb Value (grams),Duration (hh:mm:ss),Glucose Rate of Change (mg/dL/min)
+1,,FirstName,,Joe,,,,,,,
+2,,LastName,,Schmoe,,,,,,,
+3,,DateOfBirth,,1/1/70,,,,,,,
+4,,Device,,,Dexcom G6 Mobile App,iPhone G6,,,,,
+5,,Alert,Fall,,,iPhone G6,,,,,3
+6,,Alert,High,,,iPhone G6,200,,,,
+7,,Alert,Low,,,iPhone G6,80,,,,
+8,,Alert,Signal Loss,,,iPhone G6,,,,0:20:00,
+9,,Alert,Rise,,,iPhone G6,,,,,3
+10,,Alert,Urgent Low,,,iPhone G6,55,,,,
+11,,Alert,Urgent Low Soon,,,iPhone G6,55,,,,
+12,2016-10-24T11:24:17,EGV,,,,iPhone G6,103,,2,stdev,8.825145375
+13,2016-10-24T11:29:17,EGV,,,,iPhone G6,102,,,mean,107.962963
+14,2016-10-24T11:34:17,EGV,,,,iPhone G6,100,,,max,126
+15,2016-10-24T11:39:17,EGV,,,,iPhone G6,98,,,median,104
+174,2016-10-25T00:54:17,EGV,,,,iPhone G6,120,,8.124038405,min,98
+175,2016-10-25T00:59:18,EGV,,,,iPhone G6,117,,,,
+176,2016-10-25T01:04:18,EGV,,,,iPhone G6,109,,,count,28
+177,2016-10-25T01:09:18,EGV,,,,iPhone G6,102,,,,
+450,2016-10-26T06:29:15,EGV,,,,iPhone G6,105,,1.290994449,,
+451,2016-10-26T06:34:15,EGV,,,,iPhone G6,104,,,,
+452,2016-10-26T06:39:15,EGV,,,,iPhone G6,103,,,,
+453,2016-10-26T06:44:15,EGV,,,,iPhone G6,102,,,,
+671,2016-10-27T00:54:13,EGV,,,,iPhone G6,111,,5.61248608,,
+672,2016-10-27T00:59:14,EGV,,,,iPhone G6,108,,,std,2.739378552
+673,2016-10-27T01:04:14,EGV,,,,iPhone G6,104,,,,
+674,2016-10-27T01:09:13,EGV,,,,iPhone G6,99,,,mean,3.505052522
+675,2016-10-27T01:14:13,EGV,,,,iPhone G6,98,,,,
+976,2016-10-28T02:19:10,EGV,,,,iPhone G6,126,,2.167948339,median,2.083974169
+977,2016-10-28T02:24:12,EGV,,,,iPhone G6,124,,,,
+978,2016-10-28T02:29:12,EGV,,,,iPhone G6,122,,,,
+979,2016-10-28T02:34:12,EGV,,,,iPhone G6,121,,,,
+980,2016-10-28T02:39:12,EGV,,,,iPhone G6,121,,,,
+1245,2016-10-29T00:44:09,EGV,,,,iPhone G6,100,,1.834847859,,
+1246,2016-10-29T00:49:08,EGV,,,,iPhone G6,102,,,,
+1247,2016-10-29T00:54:08,EGV,,,,iPhone G6,104,,,,
+1248,2016-10-29T00:59:08,EGV,,,,iPhone G6,105,,,,
+1249,2016-10-29T01:04:08,EGV,,,,iPhone G6,104,,,,
+1250,2016-10-29T01:09:08,EGV,,,,iPhone G6,104,,,,
