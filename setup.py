@@ -21,6 +21,6 @@ setup(name='cgmquantify',
       author_email='bmbent@ncsu.edu',
       license='MIT',
       packages=['cgmquantify'],
-      install_requires=['pandas','numpy','matplotlib','datetime','statsmodels',
+      install_requires=['pandas','numpy','matplotlib','datetime','statsmodels', 'plotly',
                         ],
       zip_safe=False)
