@@ -3,6 +3,7 @@ import datetime as datetime
 import numpy as np
 import matplotlib.pyplot as plt
 from statsmodels.nonparametric.smoothers_lowess import lowess
+import plotly.express as px
 
 """
   cgmquantify package
@@ -616,3 +617,57 @@ def plotglucosesmooth(df, size=15):
   
   plt.ylabel('Glucose')
   plt.show()
+
+def plotglucoseinteractive(df):
+  """
+    Plots glucose plot with interactive scrolling
+      Args:
+          (pd.DataFrame): dataframe of data with DateTime, Time and Glucose columns
+      Returns:
+          Interactive plot of glucose
+          
+  """
+
+    fig = px.line(data, x="Time", y="Glucose", color="Day", title="Glucose Levels Over Time")
+
+    # Add range slider
+    fig.update_layout(
+        xaxis=dict(
+            rangeselector=dict(
+                buttons=list([
+                    dict(count=1,
+                        label="day",
+                        step="day",
+                        stepmode="backward"),
+                    dict(count=7,
+                        label="week",
+                        step="day",
+                        stepmode="backward"),
+                    dict(count=1,
+                        label="1m",
+                        step="month",
+                        stepmode="backward"),
+                    dict(count=3,
+                        label="3m",
+                        step="month",
+                        stepmode="backward"),
+                    dict(count=1,
+                        label="YTD",
+                        step="year",
+                        stepmode="todate"),
+                    dict(count=1,
+                        label="1y",
+                        step="year",
+                        stepmode="backward"),
+                    dict(step="all")
+                ])
+            ),
+            rangeslider=dict(
+                visible=True
+            ),
+            type="date"
+        )
+    )
+
+
+    fig.show()
