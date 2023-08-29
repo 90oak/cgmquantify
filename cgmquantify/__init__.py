@@ -628,10 +628,10 @@ def plotglucoseinteractive(df):
           
   """
 
-    fig = px.line(data, x="Time", y="Glucose", color="Day", title="Glucose Levels Over Time")
+  fig = px.line(data, x="Time", y="Glucose", color="Day", title="Glucose Levels Over Time")
 
-    # Add range slider
-    fig.update_layout(
+  # Add range slider
+  fig.update_layout(
         xaxis=dict(
             rangeselector=dict(
                 buttons=list([
@@ -668,6 +668,4 @@ def plotglucoseinteractive(df):
             type="date"
         )
     )
-
-
-    fig.show()
+  fig.show()
