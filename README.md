@@ -1,3 +1,9 @@
+# 5 September 2023:
+
+I was able to get all the functions to generate the correct output as the test file with the exception of intradaysd
+
+Started adding some new functions to further play with the data
+
 
 # cgmquantify: python package for analyzing glucose and glucose variability
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -14,12 +20,15 @@ The cgmquantify package is [now available in R!](https://CRAN.R-project.org/pack
 #### [Issue Tracking](https://github.com/brinnaebent/cgmquantify/issues)
 
 #### Installation:
-* **Recommended:** pip install cgmquantify
-* If above does not work: pip install git+git://github.com/brinnaebent/cgmquantify.git
-* git clone [repo](https://github.com/brinnaebent/cgmquantify.git)
+* **Recommended:** Use the following code in Google Collab https://colab.research.google.com/
+* !git clone https://github.com/90oak/cgmquantify.git
+* import sys
+* sys.path.append("/content/cgmquantify")
+* import cgmquantify as cgm
+* dir(cgm) #if install worked then you will get a list of cgmquantify functions
 
 #### Dependencies: (these will be downloaded upon installation with pip)
-pandas, numpy, matplotlib, statsmodels, datetime
+pandas, numpy, matplotlib, statsmodels, datetime, plotly
 
 >Coming soon -
 >* Currently only supports Dexcom CGM, more CGM coming soon
