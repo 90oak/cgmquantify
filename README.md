@@ -25,7 +25,8 @@ The cgmquantify package is [now available in R!](https://CRAN.R-project.org/pack
 import sys
 sys.path.append("/content/cgmquantify")
 import cgmquantify as cgm
-dir(cgm) #if install worked then you will get a list of cgmquantify functions```
+dir(cgm) #if install worked then you will get a list of cgmquantify functions
+```
 
 #### Dependencies: (these will be downloaded upon installation with pip)
 pandas, numpy, matplotlib, statsmodels, datetime, plotly
