@@ -21,11 +21,11 @@ The cgmquantify package is [now available in R!](https://CRAN.R-project.org/pack
 
 #### Installation:
 * **Recommended:** Use the following code in Google Collab https://colab.research.google.com/
-* !git clone https://github.com/90oak/cgmquantify.git
-* import sys
-* sys.path.append("/content/cgmquantify")
-* import cgmquantify as cgm
-* dir(cgm) #if install worked then you will get a list of cgmquantify functions
+'''!git clone https://github.com/90oak/cgmquantify.git
+import sys
+sys.path.append("/content/cgmquantify")
+import cgmquantify as cgm
+dir(cgm) #if install worked then you will get a list of cgmquantify functions'''
 
 #### Dependencies: (these will be downloaded upon installation with pip)
 pandas, numpy, matplotlib, statsmodels, datetime, plotly
